@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { createTicket, getTickets } = require("../controllers/ticketCOntroller");
+const { createTicket, getTickets } = require("../controllers/ticketController");
 
 const { protect } = require("../middleware/authMiddleware");
 
