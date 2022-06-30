@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTicket, closeTicket } from "../features/tickets/ticketSlice";
-import { getNotes, reset as notesReset } from "../features/notes/noteSlice";
+import { getNotes, createNote } from "../features/notes/noteSlice";
 import { toast } from "react-toastify";
 
 // Icons:
@@ -32,7 +32,7 @@ Modal.setAppElement("#root");
 function Ticket() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
-  const { ticket, isLoading, isSuccess, isError, message } = useSelector(
+  const { ticket, isLoading, isError, message } = useSelector(
     (state) => state.tickets
   );
 
@@ -66,7 +66,7 @@ function Ticket() {
   const onNoteSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Submit");
+    dispatch(createNote({ noteText, ticketId }));
     closeModal();
   };
 
